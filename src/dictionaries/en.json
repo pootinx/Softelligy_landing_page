@@ -1,0 +1,170 @@
+{
+    "common": {
+        "getConsultation": "Get a Consultation",
+        "exploreServices": "Explore Our Services",
+        "startProject": "Start Your Project",
+        "requestQuote": "Request a Quote",
+        "scheduleVisit": "Schedule a Visit",
+        "learnMore": "Learn More",
+        "login": "Login"
+    },
+    "nav": {
+        "itSolutions": "IT Solutions",
+        "syndicServices": "Syndic Services",
+        "platform": "Platform",
+        "about": "About"
+    },
+    "hero": {
+        "tagline": "Smart Systems. Real-World Impact.",
+        "headlinePrefix": "Technology Consulting &",
+        "headlineSuffix": "Modern Property Management",
+        "description": "We help businesses scale with advanced IT solutions and manage residential buildings with full transparency using our proprietary digital platform."
+    },
+    "stats": {
+        "projects": "High-Impact Projects",
+        "projectsSub": "Delivered globally",
+        "buildings": "Buildings Managed",
+        "buildingsSub": "Premium portfolios",
+        "residents": "Residents Served",
+        "residentsSub": "Daily satisfaction",
+        "satisfaction": "Client Satisfaction",
+        "satisfactionSub": "Retention rate"
+    },
+    "expertise": {
+        "title": "Two Areas of Expertise",
+        "subtitle": "Specialized solutions for enterprise resilience and operational excellence.",
+        "tech": {
+            "title": "Tech & Consulting",
+            "desc": "Empowering businesses through AI-driven products, cloud infrastructure, and critical cybersecurity.",
+            "features": [
+                "Artificial Intelligence & Data",
+                "Cloud Operations at Scale",
+                "Cyber-Defense Systems"
+            ]
+        },
+        "syndic": {
+            "title": "Professional Syndic Management",
+            "desc": "The legal representative of the co-owners' association, responsible for administering, maintaining, and preserving the building. We manage accounting and common areas.",
+            "features": [
+                "Professional & Volunteer Mgmt",
+                "Absolute Financial Transparency",
+                "Cleaning & Maintenance Tracking"
+            ]
+        }
+    },
+    "syndicFlow": {
+        "titlePrefix": "Professional",
+        "titleSuffix": "Syndic Management.",
+        "description": "Appointing a syndic is mandatory to ensure the residence's well-being. We manage cleaning, maintenance, and all common area operations with absolute rigor.",
+        "steps": [
+            {
+                "title": "Collect Fees",
+                "desc": "Automated billing and secure payment collection with real-time tracking for every unit."
+            },
+            {
+                "title": "Manage Maintenance",
+                "desc": "Coordination of vendors and preventative maintenance schedules to preserve asset value."
+            },
+            {
+                "title": "Handle Issues",
+                "desc": "Rapid incident response via our digital portal with status updates for concerned residents."
+            },
+            {
+                "title": "Report to Owners",
+                "desc": "Transparent financial and operational reports delivered monthly to every co-owner."
+            }
+        ]
+    },
+    "platform": {
+        "badge": "The Softeligy Edge",
+        "titlePrefix": "A Managed Service Powered by",
+        "titleSuffix": "Internal Intelligence.",
+        "description": "We don't use third-party tools. We built a proprietary platform to ensure absolute data sovereignty, real-time reporting, and zero friction.",
+        "features": [
+            {
+                "title": "Dashboard Transparency",
+                "desc": "Co-owners see every expense and maintenance log in real-time."
+            },
+            {
+                "title": "End-to-End Security",
+                "desc": "Bank-level encryption for all sensitive legal and financial documents."
+            },
+            {
+                "title": "Automated Reporting",
+                "desc": "Monthly operational performance reports generated instantly."
+            }
+        ]
+    },
+    "techServices": {
+        "titlePrefix": "Expertise Across the",
+        "titleSuffix": "Digital Frontier.",
+        "description": "Scaling business capabilities through specialized technology pillars designed for high-impact results.",
+        "services": [
+            {
+                "title": "AI & Data Science",
+                "desc": "Predictive analytics and custom LLM integrations for business intelligence."
+            },
+            {
+                "title": "Cloud Architecture",
+                "desc": "Scalable, secure, and resilient infrastructure for modern workloads."
+            },
+            {
+                "title": "Cybersecurity",
+                "desc": "Zero-trust models and defensive operations for digital asset protection."
+            },
+            {
+                "title": "Web Ecosystems",
+                "desc": "Modern full-stack platforms built with React, Node, and performance first."
+            },
+            {
+                "title": "Digital Transformation",
+                "desc": "Strategic consulting to evolve legacy systems into modern revenue levers."
+            },
+            {
+                "title": "Systems Engineering",
+                "desc": "Mission-critical reliability, performance optimization, and robust architecture."
+            }
+        ]
+    },
+    "footer": {
+        "description": "We combine advanced technology with operational expertise to deliver high-performance IT solutions and transparent property management services.",
+        "pillars": "Pillars",
+        "company": "Company",
+        "legal": "Legal",
+        "ready": "Ready to evolve your operations?",
+        "partners": "Join over 200+ partners trusting Softeligy systems.",
+        "status": "Platform Status",
+        "backToTop": "Back to Top"
+    },
+    "dashboard": {
+        "header": {
+            "title": "Property Intelligence",
+            "subtitle": "Real-time Operations Dashboard"
+        },
+        "metrics": {
+            "residents": "Total Residents",
+            "revenue": "Revenue Collection",
+            "compliance": "Compliance Rate"
+        },
+        "chart": {
+            "title": "Financial Transparency Index",
+            "revenue": "REVENUE",
+            "expenses": "EXPENSES"
+        },
+        "sync": "System Synchronized • UTC-1"
+    },
+    "cities": {
+        "badge": "National Presence",
+        "titlePrefix": "Our Residences Across",
+        "titleSuffix": "Morocco.",
+        "description": "We deliver premium co-ownership management across the Kingdom's major cities, with local presence and on-the-ground expertise.",
+        "active": "Active",
+        "morocco": "Morocco",
+        "list": {
+            "beniMellal": "Beni Mellal",
+            "temara": "Temara",
+            "casablanca": "Casablanca",
+            "marrakech": "Marrakech"
+        }
+    }
+}

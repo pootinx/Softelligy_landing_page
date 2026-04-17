@@ -1,0 +1,170 @@
+{
+    "common": {
+        "getConsultation": "Obtenir une Consultation",
+        "exploreServices": "Explorer nos Services",
+        "startProject": "Démarrer votre Projet",
+        "requestQuote": "Demander un Devis",
+        "scheduleVisit": "Planifier une Visite",
+        "learnMore": "En savoir plus",
+        "login": "Connexion"
+    },
+    "nav": {
+        "itSolutions": "Solutions IT",
+        "syndicServices": "Services Syndic",
+        "platform": "Plateforme",
+        "about": "À Propos"
+    },
+    "hero": {
+        "tagline": "Systèmes Intelligents. Impact Réel.",
+        "headlinePrefix": "Conseil en Technologie &",
+        "headlineSuffix": "Syndic de Copropriété, Gestion Immobilière Moderne",
+        "description": "Nous aidons les entreprises à se développer grâce à des solutions informatiques avancées et gérons les immeubles résidentiels en toute transparence grâce à notre plateforme numérique propriétaire."
+    },
+    "stats": {
+        "projects": "Projets à Haut Impact",
+        "projectsSub": "Livrés mondialement",
+        "buildings": "Immeubles Gérés",
+        "buildingsSub": "Portefeuilles premium",
+        "residents": "Résidents Servis",
+        "residentsSub": "Satisfaction quotidienne",
+        "satisfaction": "Satisfaction Client",
+        "satisfactionSub": "Taux de rétention"
+    },
+    "expertise": {
+        "title": "Deux Domaines d'Expertise",
+        "subtitle": "Des solutions spécialisées pour la résilience des entreprises et l'excellence opérationnelle.",
+        "tech": {
+            "title": "Technologie & Conseil",
+            "desc": "Autonomiser les entreprises grâce à des produits basés sur l'IA, une infrastructure cloud et une cybersécurité critique.",
+            "features": [
+                "Intelligence Artificielle & Données",
+                "Opérations Cloud à l'Échelle",
+                "Systèmes de Cyberdéfense"
+            ]
+        },
+        "syndic": {
+            "title": "Le Syndic de Copropriété",
+            "desc": "Le représentant légal du syndicat des copropriétaires, chargé d'administrer, d'entretenir et de conserver l'immeuble. Il gère la comptabilité, les parties communes et exécute les décisions.",
+            "features": [
+                "Gestion Professionnelle & Bénévole",
+                "Transparence Financière Absolue",
+                "Suivi du Ménage & Maintenance"
+            ]
+        }
+    },
+    "syndicFlow": {
+        "titlePrefix": "Le Syndic de",
+        "titleSuffix": "Copropriété.",
+        "description": "La désignation d'un syndic est obligatoire pour assurer le bon fonctionnement de la résidence. Nous gérons le ménage, la maintenance et tout ce qui dépend des parties communes avec une rigueur absolue.",
+        "steps": [
+            {
+                "title": "Collecter les Frais",
+                "desc": "Facturation automatisée et collecte sécurisée des paiements avec suivi en temps réel pour chaque unité."
+            },
+            {
+                "title": "Gérer la Maintenance",
+                "desc": "Coordination des prestataires et calendriers de maintenance préventive pour préserver la valeur de l'actif."
+            },
+            {
+                "title": "Gérer les Problèmes",
+                "desc": "Réponse rapide aux incidents via notre portail numérique avec mises à jour du statut pour les résidents concernés."
+            },
+            {
+                "title": "Rapport aux Propriétaires",
+                "desc": "Rapports financiers et opérationnels transparents livrés mensuellement à chaque copropriétaire."
+            }
+        ]
+    },
+    "platform": {
+        "badge": "L'Avantage Softeligy",
+        "titlePrefix": "Un Service Géré Alimenté par",
+        "titleSuffix": "l'Intelligence Interne.",
+        "description": "Nous n'utilisons pas d'outils tiers. Nous avons construit une plateforme propriétaire pour garantir une souveraineté absolue des données, des rapports en temps réel et zéro friction.",
+        "features": [
+            {
+                "title": "Transparence du Tableau de Bord",
+                "desc": "Les copropriétaires voient chaque dépense et journal de maintenance en temps réel."
+            },
+            {
+                "title": "Sécurité de Bout en Bout",
+                "desc": "Cryptage de niveau bancaire pour tous les documents juridiques et financiers sensibles."
+            },
+            {
+                "title": "Rapports Automatisés",
+                "desc": "Rapports mensuels de performance opérationnelle générés instantanément."
+            }
+        ]
+    },
+    "techServices": {
+        "titlePrefix": "Expertise à travers la",
+        "titleSuffix": "Frontière Numérique.",
+        "description": "Développer les capacités des entreprises grâce à des piliers technologiques spécialisés conçus pour des résultats à fort impact.",
+        "services": [
+            {
+                "title": "IA & Science des Données",
+                "desc": "Analyses prédictives et intégrations LLM personnalisées pour l'intelligence d'affaires."
+            },
+            {
+                "title": "Architecture Cloud",
+                "desc": "Infrastructure évolutive, sécurisée et résiliente pour les charges de travail modernes."
+            },
+            {
+                "title": "Cybersécurité",
+                "desc": "Modèles zero-trust et opérations défensives pour la protection des actifs numériques."
+            },
+            {
+                "title": "Écosystèmes Web",
+                "desc": "Plateformes full-stack modernes construites avec React, Node et la performance en priorité."
+            },
+            {
+                "title": "Transformation Numérique",
+                "desc": "Conseil stratégique pour faire évoluer les systèmes hérités en leviers de revenus modernes."
+            },
+            {
+                "title": "Ingénierie des Systèmes",
+                "desc": "Fiabilité critique, optimisation des performances et architecture robuste."
+            }
+        ]
+    },
+    "footer": {
+        "description": "Nous combinons une technologie de pointe avec une expertise opérationnelle pour fournir des solutions IT haute performance et des services de gestion immobilière transparents.",
+        "pillars": "Piliers",
+        "company": "Entreprise",
+        "legal": "Juridique",
+        "ready": "Prêt à faire évoluer vos opérations ?",
+        "partners": "Rejoignez plus de 200 partenaires qui font confiance aux systèmes Softeligy.",
+        "status": "Statut de la Plateforme",
+        "backToTop": "Retour en haut"
+    },
+    "dashboard": {
+        "header": {
+            "title": "Intelligence Immobilière",
+            "subtitle": "Tableau de Bord des Opérations en Temps Réel"
+        },
+        "metrics": {
+            "residents": "Total des Résidents",
+            "revenue": "Collecte des Revenus",
+            "compliance": "Taux de Conformité"
+        },
+        "chart": {
+            "title": "Indice de Transparence Financière",
+            "revenue": "REVENUS",
+            "expenses": "DÉPENSES"
+        },
+        "sync": "Système Synchronisé • UTC-1"
+    },
+    "cities": {
+        "badge": "Présence Nationale",
+        "titlePrefix": "Nos Résidences à Travers",
+        "titleSuffix": "le Maroc.",
+        "description": "Nous assurons une gestion de copropriété de qualité dans les principales villes du Royaume, avec une présence locale et une expertise terrain.",
+        "active": "Actif",
+        "morocco": "Maroc",
+        "list": {
+            "beniMellal": "Beni Mellal",
+            "temara": "Témara",
+            "casablanca": "Casablanca",
+            "marrakech": "Marrakech"
+        }
+    }
+}
