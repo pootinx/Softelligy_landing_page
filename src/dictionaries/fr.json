@@ -166,5 +166,29 @@
             "casablanca": "Casablanca",
             "marrakech": "Marrakech"
         }
+    },
+    "staff": {
+        "badge": "Notre Équipe sur le Terrain",
+        "titlePrefix": "Le Personnel de",
+        "titleSuffix": "Votre Résidence.",
+        "description": "Une équipe dédiée et professionnelle assure le bon fonctionnement quotidien de votre copropriété, de la sécurité à la maintenance.",
+        "roles": {
+            "security": {
+                "title": "Agent de Sécurité",
+                "desc": "Surveillance 24h/24 et contrôle d'accès pour la sécurité de votre résidence."
+            },
+            "cleaning": {
+                "title": "Agent d'Entretien",
+                "desc": "Propreté impeccable des parties communes, halls et espaces verts."
+            },
+            "camera": {
+                "title": "Technicien Vidéosurveillance",
+                "desc": "Installation et maintenance des systèmes de surveillance pour votre tranquillité."
+            },
+            "elevator": {
+                "title": "Technicien Ascenseur",
+                "desc": "Entretien préventif et dépannage des ascenseurs pour un fonctionnement optimal."
+            }
+        }
     }
 }
