@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BarChart3, TrendingUp, Users, DollarSign, Activity } from "lucide-react";
+import { TrendingUp, Users, DollarSign, Activity } from "lucide-react";
 import { useTranslation } from "@/context/LocaleContext";
 import { cn } from "@/lib/utils";
 
 export default function PremiumDashboard() {
-    const { t, dir } = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <div className="w-full bg-[#030816] rounded-3xl border border-white/5 overflow-hidden shadow-2xl relative">
@@ -31,9 +31,9 @@ export default function PremiumDashboard() {
             <div className="p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Left Column: Metrics */}
                 <div className="space-y-6">
-                    <MetricCard icon={Users} label={t("dashboard.metrics.residents")} value="5,248" trend="+12%" color="text-brand-electric" t={t} />
-                    <MetricCard icon={DollarSign} label={t("dashboard.metrics.revenue")} value="$142.5k" trend="+8.4%" color="text-white" t={t} />
-                    <MetricCard icon={TrendingUp} label={t("dashboard.metrics.compliance")} value="100%" trend="Law 18-00" color="text-brand-electric" t={t} />
+                    <MetricCard icon={Users} label={t("dashboard.metrics.residents")} value="5,248" trend="+12%" color="text-brand-electric" />
+                    <MetricCard icon={DollarSign} label={t("dashboard.metrics.revenue")} value="$142.5k" trend="+8.4%" color="text-white" />
+                    <MetricCard icon={TrendingUp} label={t("dashboard.metrics.compliance")} value="100%" trend="Law 18-00" color="text-brand-electric" />
                 </div>
 
                 {/* Middle Column: Main Graph */}
@@ -121,7 +121,15 @@ export default function PremiumDashboard() {
     );
 }
 
-function MetricCard({ icon: Icon, label, value, trend, color, t }: any) {
+interface MetricCardProps {
+    icon: React.ElementType;
+    label: string;
+    value: string;
+    trend: string;
+    color: string;
+}
+
+function MetricCard({ icon: Icon, label, value, trend, color }: MetricCardProps) {
     return (
         <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/5 hover:bg-white/[0.05] transition-all group">
             <div className="flex items-center justify-between mb-3">

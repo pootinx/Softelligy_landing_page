@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Cpu, Building2, ArrowRight, Shield, Globe } from "lucide-react";
+import { Building2, ArrowRight, Globe } from "lucide-react";
 import { useTranslation } from "@/context/LocaleContext";
 
 export default function SegmentationSection() {

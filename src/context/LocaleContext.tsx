@@ -6,11 +6,13 @@ import en from "../dictionaries/en.json";
 import ar from "../dictionaries/ar.json";
 
 type Locale = "fr" | "en" | "ar";
-type Dictionary = typeof fr;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Dictionary = any;
 
 interface LocaleContextType {
     locale: Locale;
     setLocale: (locale: Locale) => void;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     t: (keyPath: string) => any;
     dir: "ltr" | "rtl";
 }
@@ -37,6 +39,7 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
 
     const t = (keyPath: string) => {
         const keys = keyPath.split(".");
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         let result: any = dictionaries[locale];
 
         for (const key of keys) {

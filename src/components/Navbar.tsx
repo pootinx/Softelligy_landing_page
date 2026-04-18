@@ -94,7 +94,7 @@ export default function Navbar() {
                                         <button
                                             key={lang.code}
                                             onClick={() => {
-                                                setLocale(lang.code as any);
+                                                setLocale(lang.code as "fr" | "en" | "ar");
                                                 setLangMenuOpen(false);
                                             }}
                                             className={cn(
@@ -154,7 +154,7 @@ export default function Navbar() {
                             {languages.map((lang) => (
                                 <button
                                     key={lang.code}
-                                    onClick={() => setLocale(lang.code as any)}
+                                    onClick={() => setLocale(lang.code as "fr" | "en" | "ar")}
                                     className={cn(
                                         "flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-all",
                                         locale === lang.code ? "bg-brand border-brand text-white" : "border-white/10 text-white/40"
