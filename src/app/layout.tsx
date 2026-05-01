@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const ibmPlexArabic = IBM_Plex_Sans_Arabic({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["arabic"],
+  variable: "--font-arabic",
+});
 
 export const metadata: Metadata = {
-  title: "Softeligy | Technology Consulting & Property Management",
-  description: "Enterprise-grade IT services and software-powered property management solutions.",
+  title: "Softeligy | Syndic de Copropriété & Gestion Immobilière",
+  description: "Services de gestion immobilière transparents et modernes, alimentés par notre plateforme numérique propriétaire.",
 };
 
 import { LocaleProvider } from "@/context/LocaleContext";
@@ -18,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} ${ibmPlexArabic.variable} antialiased`}>
         <LocaleProvider>
           {children}
         </LocaleProvider>
@@ -26,3 +31,4 @@ export default function RootLayout({
     </html>
   );
 }
+

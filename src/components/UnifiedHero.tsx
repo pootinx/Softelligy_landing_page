@@ -56,10 +56,10 @@ export default function UnifiedHero() {
                     </div>
 
                     <h1 className={cn(
-                        "text-6xl md:text-[7rem] font-black text-white leading-[1] mb-10 tracking-tighter",
-                        t("hero.lang") === "ar" && "md:text-[6rem]"
+                        "text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-10 tracking-tighter",
+                        t("hero.lang") === "ar" && "lg:text-6xl"
                     )}>
-                        {t("hero.headlinePrefix")} <br />& <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-electric via-blue-400 to-white">{t("hero.headlineSuffix")}</span>
+                        {t("hero.headlinePrefix")} <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-electric via-blue-400 to-white">{t("hero.headlineSuffix")}</span>
                     </h1>
 
                     <p className="text-lg md:text-xl text-white/40 max-w-2xl mx-auto mb-16 leading-relaxed font-medium">

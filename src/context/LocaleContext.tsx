@@ -57,7 +57,7 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
 
     return (
         <LocaleContext.Provider value={{ locale, setLocale, t, dir }}>
-            <div dir={dir}>{children}</div>
+            <div dir={dir} style={locale === "ar" ? { fontFamily: "var(--font-arabic)" } : undefined}>{children}</div>
         </LocaleContext.Provider>
     );
 }
