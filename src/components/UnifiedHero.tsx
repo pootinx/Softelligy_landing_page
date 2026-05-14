@@ -4,17 +4,21 @@ import { motion } from "framer-motion";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useTranslation } from "@/context/LocaleContext";
+import { useSiteContent } from "@/context/SiteContentContext";
 import { cn } from "@/lib/utils";
 
 export default function UnifiedHero() {
     const { t, dir } = useTranslation();
+    const { page } = useSiteContent();
+    const hero = page?.sections?.hero;
+    const bgImage = hero?.backgroundImage || "/hero-bg.png";
 
     return (
         <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-brand-navy pt-20">
             {/* Background with 3D pattern + Degradation Layers */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/hero-bg.png"
+                    src={bgImage}
                     alt="Abstract 3D Background"
                     fill
                     className="object-cover opacity-30 mix-blend-overlay"

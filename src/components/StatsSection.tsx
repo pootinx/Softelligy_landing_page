@@ -2,22 +2,25 @@
 
 import { motion } from "framer-motion";
 import { useTranslation } from "@/context/LocaleContext";
+import { useSiteContent } from "@/context/SiteContentContext";
 
 export default function StatsSection() {
     const { t } = useTranslation();
+    const { page } = useSiteContent();
+    const stats = page?.sections?.stats;
 
-    const stats = [
-        { label: t("stats.projects"), value: "200+", subtext: t("stats.projectsSub") },
-        { label: t("stats.buildings"), value: "150+", subtext: t("stats.buildingsSub") },
-        { label: t("stats.residents"), value: "5,000+", subtext: t("stats.residentsSub") },
-        { label: t("stats.satisfaction"), value: "98%", subtext: t("stats.satisfactionSub") },
+    const items = [
+        { label: t("stats.projects"), value: stats?.projects || "200+", subtext: t("stats.projectsSub") },
+        { label: t("stats.buildings"), value: stats?.buildings || "150+", subtext: t("stats.buildingsSub") },
+        { label: t("stats.residents"), value: stats?.residents || "5,000+", subtext: t("stats.residentsSub") },
+        { label: t("stats.satisfaction"), value: stats?.satisfaction || "98%", subtext: t("stats.satisfactionSub") },
     ];
 
     return (
         <section className="bg-brand-navy py-20 border-y border-white/5">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
-                    {stats.map((stat, i) => (
+                    {items.map((stat, i) => (
                         <motion.div
                             key={i}
                             initial={{ opacity: 0, y: 20 }}
