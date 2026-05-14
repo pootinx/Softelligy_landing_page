@@ -4,10 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { Globe, MessageSquare, Phone, Mail, ArrowUp, ChevronRight } from "lucide-react";
 import { useTranslation } from "@/context/LocaleContext";
+import { useSiteContent } from "@/context/SiteContentContext";
 import { cn } from "@/lib/utils";
 
 export default function Footer() {
     const { t, dir } = useTranslation();
+    const { getContentBlock } = useSiteContent();
+    const phone1 = getContentBlock("company-phone") || "+212 670 977 483";
+    const phone2 = getContentBlock("company-phone-2") || "+212 682 086 521";
+    const email = getContentBlock("company-email") || "contact@softelligy.com";
+    const address = getContentBlock("company-address") || "Casablanca, Morocco";
+    const copyright = getContentBlock("footer-copyright") || "SOFTELIGY. ALL RIGHTS RESERVED.";
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -130,8 +137,8 @@ export default function Footer() {
                         </div>
                         <div>
                             <p className="text-[10px] font-black uppercase tracking-widest text-white/20 mb-1">PHONE</p>
-                            <p className="text-sm font-bold text-white">+212 670 977 483</p>
-                            <p className="text-sm font-bold text-white/60">+212 682 086 521</p>
+                            <p className="text-sm font-bold text-white">{phone1}</p>
+                            <p className="text-sm font-bold text-white/60">{phone2}</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-4 border-y md:border-y-0 md:border-x border-white/5 py-6 md:py-0 md:px-6">
@@ -140,7 +147,7 @@ export default function Footer() {
                         </div>
                         <div>
                             <p className="text-[10px] font-black uppercase tracking-widest text-white/20 mb-1">EMAIL</p>
-                            <p className="text-sm font-bold text-white">contact@softeligy.com</p>
+                            <p className="text-sm font-bold text-white">{email}</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
@@ -149,7 +156,7 @@ export default function Footer() {
                         </div>
                         <div>
                             <p className="text-[10px] font-black uppercase tracking-widest text-white/20 mb-1">LOCATION</p>
-                            <p className="text-sm font-bold text-white">Casablanca, Morocco</p>
+                            <p className="text-sm font-bold text-white">{address}</p>
                         </div>
                     </div>
                 </div>
@@ -157,7 +164,7 @@ export default function Footer() {
                 {/* Bottom Bar */}
                 <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-12 border-t border-white/5">
                     <p className="text-[10px] font-bold text-white/20 uppercase tracking-[.3em]">
-                        © {new Date().getFullYear()} SOFTELIGY. ALL RIGHTS RESERVED.
+                        © {new Date().getFullYear()} {copyright}
                     </p>
                     <div className="flex items-center gap-8">
                         <div className="flex items-center gap-2">

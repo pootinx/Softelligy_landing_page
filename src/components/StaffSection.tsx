@@ -3,27 +3,35 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslation } from "@/context/LocaleContext";
+import { useSiteContent } from "@/context/SiteContentContext";
 
-const staff = [
-    { key: "security", image: "/Staff/security_guarde.png" },
-    { key: "cleaning", image: "/Staff/cleaning_women.png" },
-    { key: "camera", image: "/Staff/camera_technicien.png" },
-    { key: "elevator", image: "/Staff/elevator_technicien.png" },
+const fallbackStaff = [
+  { key: "security", image: "/Staff/security_guarde.png" },
+  { key: "cleaning", image: "/Staff/cleaning_women.png" },
+  { key: "camera", image: "/Staff/camera_technicien.png" },
+  { key: "elevator", image: "/Staff/elevator_technicien.png" },
 ];
 
 export default function StaffSection() {
     const { t } = useTranslation();
+    const { page } = useSiteContent();
+    const remoteMembers = page?.sections?.staff?.members;
+
+    const staff = remoteMembers && remoteMembers.length > 0
+      ? remoteMembers.map((m: any) => ({
+          key: m.key,
+          image: m.image || fallbackStaff.find((f) => f.key === m.key)?.image || "",
+        }))
+      : fallbackStaff;
 
     return (
         <section className="py-24 px-6 bg-brand-navy relative overflow-hidden" id="staff">
-            {/* Background Degradation */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50%] h-[50%] bg-brand-electric/5 rounded-full blur-[120px]" />
             </div>
 
             <div className="max-w-7xl mx-auto relative z-10">
-                {/* Header */}
                 <div className="text-center mb-20">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -42,9 +50,8 @@ export default function StaffSection() {
                     </p>
                 </div>
 
-                {/* Staff Grid */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {staff.map((member, i) => (
+                    {staff.map((member: any, i: number) => (
                         <motion.div
                             key={member.key}
                             initial={{ opacity: 0, y: 30 }}
@@ -53,7 +60,6 @@ export default function StaffSection() {
                             viewport={{ once: true }}
                             className="group relative text-center"
                         >
-                            {/* Photo Container */}
                             <div className="relative w-48 h-48 mx-auto mb-6 rounded-[2rem] overflow-hidden border-2 border-white/10 group-hover:border-brand-electric/50 transition-all shadow-2xl">
                                 <Image
                                     src={member.image}
@@ -61,11 +67,9 @@ export default function StaffSection() {
                                     fill
                                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                                 />
-                                {/* Overlay on hover */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                             </div>
 
-                            {/* Info */}
                             <h3 className="text-lg font-black text-white mb-2">
                                 {t(`staff.roles.${member.key}.title`)}
                             </h3>
@@ -73,7 +77,6 @@ export default function StaffSection() {
                                 {t(`staff.roles.${member.key}.desc`)}
                             </p>
 
-                            {/* Decorative dot */}
                             <div className="flex justify-center mt-4">
                                 <div className="w-1.5 h-1.5 rounded-full bg-brand-electric/50" />
                             </div>

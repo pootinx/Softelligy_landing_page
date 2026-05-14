@@ -4,8 +4,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import { useTranslation } from "@/context/LocaleContext";
+import { useSiteContent } from "@/context/SiteContentContext";
 
-const cities = [
+const fallbackCities = [
     { key: "beniMellal", image: "/residences/Residence1.jpg" },
     { key: "temara", image: "/residences/Residence2.png" },
     { key: "casablanca", image: "/residences/Residence3.jpg" },
@@ -14,10 +15,18 @@ const cities = [
 
 export default function CitiesSection() {
     const { t } = useTranslation();
+    const { page } = useSiteContent();
+    const remoteCities = page?.sections?.cities?.list;
+
+    const cities = remoteCities && remoteCities.length > 0
+      ? remoteCities.map((c: any) => ({
+          key: c.key,
+          image: c.image || fallbackCities.find((f) => f.key === c.key)?.image || "",
+        }))
+      : fallbackCities;
 
     return (
         <section className="py-24 px-6 bg-white relative overflow-hidden" id="cities">
-            {/* Background Degradation */}
             <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:5rem_5rem]" />
                 <motion.div
@@ -28,7 +37,6 @@ export default function CitiesSection() {
             </div>
 
             <div className="max-w-7xl mx-auto relative z-10">
-                {/* Header */}
                 <div className="text-center mb-16">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -48,9 +56,8 @@ export default function CitiesSection() {
                     </p>
                 </div>
 
-                {/* Cities Grid */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {cities.map((city, i) => (
+                    {cities.map((city: any, i: number) => (
                         <motion.div
                             key={city.key}
                             initial={{ opacity: 0, y: 30 }}
@@ -59,7 +66,6 @@ export default function CitiesSection() {
                             viewport={{ once: true }}
                             className="group relative rounded-[2rem] overflow-hidden bg-white border border-slate-100 hover:shadow-2xl hover:shadow-brand/10 transition-all"
                         >
-                            {/* Image */}
                             <div className="relative h-64 overflow-hidden">
                                 <Image
                                     src={city.image}
@@ -67,10 +73,7 @@ export default function CitiesSection() {
                                     fill
                                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                                 />
-                                {/* Overlay gradient */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-brand-navy/20 to-transparent" />
-
-                                {/* City name overlay */}
                                 <div className="absolute bottom-0 left-0 right-0 p-6">
                                     <div className="flex items-center gap-2 mb-2">
                                         <div className="w-2 h-2 rounded-full bg-brand-electric animate-pulse" />
@@ -83,8 +86,6 @@ export default function CitiesSection() {
                                     </h3>
                                 </div>
                             </div>
-
-                            {/* Bottom info */}
                             <div className="p-5 flex items-center justify-between">
                                 <div className="flex items-center gap-2 text-slate-400 text-xs font-bold">
                                     <MapPin className="w-3 h-3 text-brand" />

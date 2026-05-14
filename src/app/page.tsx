@@ -1,5 +1,6 @@
 "use client";
 
+import { SiteContentProvider } from "@/context/SiteContentContext";
 import Navbar from "@/components/Navbar";
 import UnifiedHero from "@/components/UnifiedHero";
 import StatsSection from "@/components/StatsSection";
@@ -11,24 +12,17 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <Navbar />
-      <UnifiedHero />
-      <StatsSection />
-
-      {/* Operational Depth */}
-      <SyndicFlow />
-
-      {/* Field Personnel */}
-      <StaffSection />
-
-      {/* Active Cities */}
-      <CitiesSection />
-
-      {/* Software Differentiation */}
-      <SoftwareShowcase />
-
-      <Footer />
-    </main>
+    <SiteContentProvider pageId="home">
+      <main className="min-h-screen">
+        <Navbar />
+        <UnifiedHero />
+        <StatsSection />
+        <SyndicFlow />
+        <StaffSection />
+        <CitiesSection />
+        <SoftwareShowcase />
+        <Footer />
+      </main>
+    </SiteContentProvider>
   );
 }
