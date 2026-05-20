@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 };
 
 import { LocaleProvider } from "@/context/LocaleContext";
+import { AuthProvider } from "@/contexts/AuthContext";  // ← AJOUTER CETTE LIGNE
 
 export default function RootLayout({
   children,
@@ -25,10 +26,11 @@ export default function RootLayout({
     <html>
       <body className={`${inter.className} ${ibmPlexArabic.variable} antialiased`}>
         <LocaleProvider>
-          {children}
+          <AuthProvider>           {/* ← AJOUTER CETTE LIGNE */}
+            {children}
+          </AuthProvider>          {/* ← AJOUTER CETTE LIGNE */}
         </LocaleProvider>
       </body>
     </html>
   );
 }
-
