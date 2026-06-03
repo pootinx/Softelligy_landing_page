@@ -1,10 +1,9 @@
-import React from 'react'
 'use client'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { auth } from '@/lib/firebase'
 import { onAuthStateChanged, signOut as firebaseSignOut } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
-
+import React from 'react'
 const AuthContext = createContext({})
 
 export function AuthProvider({ children }) {
