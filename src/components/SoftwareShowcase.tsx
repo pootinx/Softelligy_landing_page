@@ -93,7 +93,7 @@ export default function SoftwareShowcase() {
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8 mt-24 w-full">
-                    {features.map((feature, i) => (
+                    {features.map((feature: any, i: number) => (
                         <motion.div
                             key={i}
                             whileHover={{ y: -5 }}
