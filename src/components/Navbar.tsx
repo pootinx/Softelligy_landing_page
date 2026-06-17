@@ -64,7 +64,7 @@ export default function Navbar() {
 
                 {/* Desktop Nav */}
                 <div className="hidden md:flex items-center gap-8">
-                    {navLinks.map((link) => (
+                    {navLinks.map((link: any) => (
                         <Link
                             key={link.name}
                             href={link.href}
@@ -159,7 +159,7 @@ export default function Navbar() {
                         exit={{ opacity: 0, height: 0 }}
                         className="absolute top-24 left-6 right-6 bg-brand-navy/95 backdrop-blur-2xl rounded-3xl border border-white/10 p-8 md:hidden flex flex-col gap-6 shadow-3xl overflow-hidden"
                     >
-                        {navLinks.map((link) => (
+                        {navLinks.map((link: any) => (
                             <Link
                                 key={link.name}
                                 href={link.href}

@@ -63,6 +63,7 @@ export default function ImageUploader({
     if (galleryOpen && galleryImages.length === 0) {
       loadGallery();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [galleryOpen]);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {

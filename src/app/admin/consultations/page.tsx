@@ -1,15 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useFirestoreCollection } from "@/lib/hooks/useCollection";
 import { getFirestore, doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { getFirebaseApp } from "@/firebase/config";
-import { useAuth } from "@/context/AuthContext";
 import toast from "react-hot-toast";
-import { MessageSquare, CheckCircle2, Circle, Trash2, Calendar, Phone, MapPin, Building, ShieldCheck, Clock } from "lucide-react";
+import { MessageSquare, CheckCircle2, Circle, Trash2, Phone, MapPin, Building, ShieldCheck, Clock } from "lucide-react";
 
 export default function AdminConsultationsPage() {
-  const { user } = useAuth();
   const { items, loading } = useFirestoreCollection("consultations", "createdAt");
 
   const handleMarkStatus = async (item: any, newStatus: string) => {

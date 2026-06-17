@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { useFirestoreCollection } from "@/lib/hooks/useCollection";
 import FormField from "@/components/admin/FormField";
 import SaveButton from "@/components/admin/SaveButton";
@@ -10,13 +9,11 @@ import { getFirestore, doc, setDoc, addDoc, collection, deleteDoc } from "fireba
 import { getFirebaseApp } from "@/firebase/config";
 import { logAdminAction } from "@/lib/auditLog";
 import { useAuth } from "@/context/AuthContext";
-import { useTranslation } from "@/context/LocaleContext";
 import toast from "react-hot-toast";
 import { Edit2, Trash2, DatabaseBackup } from "lucide-react";
 
 export default function AdminResidencesPage() {
   const { user } = useAuth();
-  const { t } = useTranslation();
   const { items, loading } = useFirestoreCollection("residences", "order");
   
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -58,17 +55,7 @@ export default function AdminResidencesPage() {
     }
   };
 
-  const handleToggleStatus = async (item: any) => {
-    try {
-      const db = getFirestore(getFirebaseApp());
-      const newStatus = item.status === "active" ? "inactive" : "active";
-      await setDoc(doc(db, "residences", item.id), { status: newStatus }, { merge: true });
-      await logAdminAction("TOGGLE_RESIDENCE_STATUS", user?.email, item, { ...item, status: newStatus });
-      toast.success(`Status changed to ${newStatus}`);
-    } catch (err: any) {
-      toast.error(`Error toggling status: ${err.message}`);
-    }
-  };
+
 
   const seedDefaults = async () => {
     if (!confirm("Add default residences to database?")) return;

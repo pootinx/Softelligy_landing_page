@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { useFirestoreCollection } from "@/lib/hooks/useCollection";
 import FormField from "@/components/admin/FormField";
 import SaveButton from "@/components/admin/SaveButton";

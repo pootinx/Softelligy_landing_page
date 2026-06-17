@@ -10,7 +10,7 @@ import { logAdminAction } from "@/lib/auditLog";
 import { useAuth } from "@/context/AuthContext";
 import { useTranslation } from "@/context/LocaleContext";
 import toast from "react-hot-toast";
-import { Edit2, Trash2, Plus, DatabaseBackup } from "lucide-react";
+import { Edit2, Trash2, DatabaseBackup } from "lucide-react";
 
 export default function AdminServicesPage() {
   const { user } = useAuth();

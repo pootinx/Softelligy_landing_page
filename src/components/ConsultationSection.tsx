@@ -5,10 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle2, Loader2, Building, ShieldCheck } from "lucide-react";
 import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { getFirebaseApp } from "@/firebase/config";
-import { useTranslation } from "@/context/LocaleContext";
 
 export default function ConsultationSection() {
-  const { t } = useTranslation();
   const [serviceType, setServiceType] = useState<"syndic" | "other">("syndic");
   
   const [formData, setFormData] = useState({
@@ -95,7 +93,7 @@ export default function ConsultationSection() {
               Prêt à transformer la gestion de <span className="text-brand-electric">votre résidence ?</span>
             </h2>
             <p className="text-white/50 text-lg leading-relaxed mb-8">
-              Remplissez le formulaire de consultation. Notre équipe d'experts vous contactera dans les plus brefs délais pour analyser vos besoins et vous proposer la meilleure solution.
+              Remplissez le formulaire de consultation. Notre équipe d&apos;experts vous contactera dans les plus brefs délais pour analyser vos besoins et vous proposer la meilleure solution.
             </p>
 
             <div className="space-y-6">
@@ -217,7 +215,7 @@ export default function ConsultationSection() {
                           <input required type="text" name="residenceName" value={formData.residenceName} onChange={handleInputChange} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-900 placeholder-gray-400" placeholder="Les Jasmins" />
                         </div>
                         <div className="col-span-2 md:col-span-1">
-                          <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Nombre d'Appartements</label>
+                          <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Nombre d&apos;Appartements</label>
                           <input required type="number" min="1" name="apartmentsCount" value={formData.apartmentsCount} onChange={handleInputChange} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-900 placeholder-gray-400" placeholder="Ex: 24" />
                         </div>
                       </div>
