@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useTranslation } from "@/context/LocaleContext";
 import { useSiteContent } from "@/context/SiteContentContext";
 import { useFirestoreDoc } from "@/lib/hooks/useDoc";
@@ -85,17 +86,17 @@ export default function UnifiedHero() {
                     </p>
 
                     <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-                        <button className="relative group overflow-hidden bg-brand text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:bg-white hover:text-brand-navy shadow-3xl">
+                        <Link href="#contact" className="relative group overflow-hidden bg-brand text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:bg-white hover:text-brand-navy shadow-3xl">
                             <span className="relative z-10 flex items-center gap-4">
                                 {loading ? <span className="w-24 h-4 bg-white/20 animate-pulse rounded" /> : heroData.ctaText}
                                 <ArrowRight className={cn("w-5 h-5 group-hover:translate-x-1 transition-transform", dir === "rtl" && "rotate-180")} />
                             </span>
-                        </button>
+                        </Link>
 
-                        <button className="flex items-center gap-4 text-white font-bold px-12 py-6 rounded-2xl border border-white/10 hover:bg-white/5 transition-all uppercase tracking-widest text-xs">
+                        <Link href="#syndic-process" className="flex items-center gap-4 text-white font-bold px-12 py-6 rounded-2xl border border-white/10 hover:bg-white/5 transition-all uppercase tracking-widest text-xs">
                             {t("common.exploreServices")}
                             <ChevronRight className={cn("w-5 h-5 text-brand-electric", dir === "rtl" && "rotate-180")} />
-                        </button>
+                        </Link>
                     </div>
                 </motion.div>
             </div>
