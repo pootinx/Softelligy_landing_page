@@ -7,9 +7,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/context/LocaleContext";
+import { useFirestoreDoc } from "@/lib/hooks/useDoc";
 
 export default function Navbar() {
     const { t, locale, setLocale, dir } = useTranslation();
+    const { data, loading } = useFirestoreDoc("site_config", "navbar");
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [langMenuOpen, setLangMenuOpen] = useState(false);
@@ -22,12 +24,14 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const navLinks = [
+    const defaultNavLinks = [
         { name: t("nav.itSolutions"), href: "#tech" },
         { name: t("nav.syndicServices"), href: "#syndic-process" },
         { name: t("nav.platform"), href: "#platform" },
         { name: t("nav.about"), href: "#about" },
     ];
+
+    const navLinks = data?.links && data.links.length > 0 ? data.links : defaultNavLinks;
 
     const languages = [
         { code: "fr", label: "Français" },
@@ -50,7 +54,7 @@ export default function Navbar() {
             )}>
                 <Link href="/" className="flex items-center gap-2 group">
                     <Image
-                        src="/logo-horizontal-white.png"
+                        src={data?.logoUrl || "/logo-horizontal-white.png"}
                         alt="Softeligy Logo"
                         width={140}
                         height={40}
@@ -110,13 +114,31 @@ export default function Navbar() {
                         </AnimatePresence>
                     </div>
 
-                    <button className="text-[10px] font-black uppercase tracking-widest text-white/50 hover:text-white px-4">
-                        {t("common.login")}
-                    </button>
-                    <button className="bg-brand text-white px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 hover:bg-white hover:text-brand-navy transition-all group scale-100 hover:scale-105 shadow-xl shadow-brand/20">
-                        {t("common.getConsultation")}
-                        <ArrowRight className={cn("w-3 h-3 group-hover:translate-x-1 transition-transform", dir === "rtl" && "rotate-180")} />
-                    </button>
+                    {data?.showLogin !== false && (
+                        data?.loginUrl ? (
+                            <Link href={data.loginUrl} className="text-[10px] font-black uppercase tracking-widest text-white/50 hover:text-white px-4">
+                                {loading ? <span className="inline-block w-12 h-3 bg-white/20 animate-pulse rounded" /> : (data?.loginText || t("common.login"))}
+                            </Link>
+                        ) : (
+                            <button className="text-[10px] font-black uppercase tracking-widest text-white/50 hover:text-white px-4">
+                                {loading ? <span className="inline-block w-12 h-3 bg-white/20 animate-pulse rounded" /> : (data?.loginText || t("common.login"))}
+                            </button>
+                        )
+                    )}
+
+                    {data?.showCta !== false && (
+                        data?.ctaUrl ? (
+                            <Link href={data.ctaUrl} className="bg-brand text-white px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 hover:bg-white hover:text-brand-navy transition-all group scale-100 hover:scale-105 shadow-xl shadow-brand/20">
+                                {loading ? <span className="inline-block w-24 h-3 bg-white/20 animate-pulse rounded" /> : (data?.ctaText || t("common.getConsultation"))}
+                                <ArrowRight className={cn("w-3 h-3 group-hover:translate-x-1 transition-transform", dir === "rtl" && "rotate-180")} />
+                            </Link>
+                        ) : (
+                            <button className="bg-brand text-white px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 hover:bg-white hover:text-brand-navy transition-all group scale-100 hover:scale-105 shadow-xl shadow-brand/20">
+                                {loading ? <span className="inline-block w-24 h-3 bg-white/20 animate-pulse rounded" /> : (data?.ctaText || t("common.getConsultation"))}
+                                <ArrowRight className={cn("w-3 h-3 group-hover:translate-x-1 transition-transform", dir === "rtl" && "rotate-180")} />
+                            </button>
+                        )
+                    )}
                 </div>
 
                 {/* Mobile Toggle */}
@@ -165,9 +187,28 @@ export default function Navbar() {
                             ))}
                         </div>
 
-                        <button className="bg-brand text-white w-full py-5 rounded-2xl font-black uppercase tracking-widest text-sm shadow-xl">
-                            {t("common.getConsultation")}
-                        </button>
+                        {data?.showCta !== false && (
+                            data?.ctaUrl ? (
+                                <Link href={data.ctaUrl} className="bg-brand text-white w-full py-5 rounded-2xl font-black uppercase tracking-widest text-sm shadow-xl flex items-center justify-center mt-2">
+                                    {data?.ctaText || t("common.getConsultation")}
+                                </Link>
+                            ) : (
+                                <button className="bg-brand text-white w-full py-5 rounded-2xl font-black uppercase tracking-widest text-sm shadow-xl mt-2">
+                                    {data?.ctaText || t("common.getConsultation")}
+                                </button>
+                            )
+                        )}
+                        {data?.showLogin !== false && (
+                            data?.loginUrl ? (
+                                <Link href={data.loginUrl} className="bg-white/5 border border-white/10 text-white w-full py-5 rounded-2xl font-black uppercase tracking-widest text-sm flex items-center justify-center hover:bg-white/10 transition-colors">
+                                    {data?.loginText || t("common.login")}
+                                </Link>
+                            ) : (
+                                <button className="bg-white/5 border border-white/10 text-white w-full py-5 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-white/10 transition-colors">
+                                    {data?.loginText || t("common.login")}
+                                </button>
+                            )
+                        )}
                     </motion.div>
                 )}
             </AnimatePresence>

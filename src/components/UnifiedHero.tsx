@@ -5,20 +5,31 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useTranslation } from "@/context/LocaleContext";
 import { useSiteContent } from "@/context/SiteContentContext";
+import { useFirestoreDoc } from "@/lib/hooks/useDoc";
 import { cn } from "@/lib/utils";
 
 export default function UnifiedHero() {
     const { t, dir } = useTranslation();
     const { page } = useSiteContent();
-    const hero = page?.sections?.hero;
-    const bgImage = hero?.backgroundImage || "/hero-bg.png";
+    const existingHero = page?.sections?.hero;
+
+    const { data, loading } = useFirestoreDoc('site_config', 'hero');
+
+    const heroData = {
+        title: data?.titlePrefix ?? data?.title ?? t("hero.headlinePrefix"),
+        subtitle: data?.titleSuffix ?? data?.subtitle ?? t("hero.headlineSuffix"),
+        tagline: data?.tagline ?? t("hero.tagline"),
+        description: data?.description ?? t("hero.description"),
+        ctaText: data?.ctaText ?? t("common.getConsultation"),
+        backgroundImageUrl: data?.backgroundImageUrl ?? existingHero?.backgroundImage ?? "/hero-bg.png",
+    };
 
     return (
         <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-brand-navy pt-20">
             {/* Background with 3D pattern + Degradation Layers */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src={bgImage}
+                    src={heroData.backgroundImageUrl}
                     alt="Abstract 3D Background"
                     fill
                     className="object-cover opacity-30 mix-blend-overlay"
@@ -56,24 +67,27 @@ export default function UnifiedHero() {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-electric opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-electric"></span>
                         </span>
-                        {t("hero.tagline")}
+                        {loading ? <span className="w-24 h-3 bg-brand-electric/20 animate-pulse rounded" /> : heroData.tagline}
                     </div>
 
                     <h1 className={cn(
                         "text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-10 tracking-tighter",
                         t("hero.lang") === "ar" && "lg:text-6xl"
                     )}>
-                        {t("hero.headlinePrefix")} <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-electric via-blue-400 to-white">{t("hero.headlineSuffix")}</span>
+                        {loading ? <div className="w-64 h-12 bg-white/20 animate-pulse rounded inline-block" /> : heroData.title} <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-electric via-blue-400 to-white">
+                            {loading ? <div className="w-48 h-12 bg-brand-electric/20 animate-pulse rounded inline-block mt-2" /> : heroData.subtitle}
+                        </span>
                     </h1>
 
                     <p className="text-lg md:text-xl text-white/40 max-w-2xl mx-auto mb-16 leading-relaxed font-medium">
-                        {t("hero.description")}
+                        {loading ? <span className="w-full h-16 bg-white/10 animate-pulse rounded inline-block" /> : heroData.description}
                     </p>
 
                     <div className="flex flex-col md:flex-row items-center justify-center gap-8">
                         <button className="relative group overflow-hidden bg-brand text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:bg-white hover:text-brand-navy shadow-3xl">
                             <span className="relative z-10 flex items-center gap-4">
-                                {t("common.getConsultation")}
+                                {loading ? <span className="w-24 h-4 bg-white/20 animate-pulse rounded" /> : heroData.ctaText}
                                 <ArrowRight className={cn("w-5 h-5 group-hover:translate-x-1 transition-transform", dir === "rtl" && "rotate-180")} />
                             </span>
                         </button>

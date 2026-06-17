@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/third-parties": "^16.2.9",
+    "@sentry/nextjs": "^10.58.0",
+    "browser-image-compression": "^2.0.2",
     "clsx": "^2.1.1",
     "firebase": "^12.13.0",
     "firebase-admin": "^13.9.0",
@@ -17,6 +20,7 @@
     "next": "14.2.35",
     "react": "^18",
     "react-dom": "^18",
+    "react-hot-toast": "^2.6.0",
     "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {

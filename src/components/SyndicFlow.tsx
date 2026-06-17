@@ -3,12 +3,14 @@
 import { motion } from "framer-motion";
 import { HandCoins, Hammer, Megaphone, BarChart3, ArrowRight } from "lucide-react";
 import { useTranslation } from "@/context/LocaleContext";
+import { useFirestoreCollection } from "@/lib/hooks/useCollection";
 import { cn } from "@/lib/utils";
 
 export default function SyndicFlow() {
     const { t, dir } = useTranslation();
+    const { items: services, loading } = useFirestoreCollection('services', 'order');
 
-    const steps = [
+    const defaultSteps = [
         {
             title: t("syndicFlow.steps.0.title"),
             desc: t("syndicFlow.steps.0.desc"),
@@ -34,6 +36,16 @@ export default function SyndicFlow() {
             color: "bg-blue-900/10 text-blue-900",
         },
     ];
+
+    const steps = services && services.length > 0 ? services.map((s: any, i: number) => {
+        const fallback = defaultSteps[i] || defaultSteps[0];
+        return {
+            title: s.title,
+            desc: s.description,
+            icon: fallback.icon, // To be fully dynamic, we'd map string icons to Lucide components
+            color: fallback.color
+        };
+    }) : defaultSteps;
 
     return (
         <section className="py-24 px-6 bg-white relative overflow-hidden" id="syndic-process">
@@ -95,8 +107,12 @@ export default function SyndicFlow() {
                             <div className={`w-14 h-14 rounded-2xl ${step.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform relative z-10`}>
                                 <step.icon className="w-7 h-7" />
                             </div>
-                            <h3 className="text-xl font-bold text-brand-navy mb-4 relative z-10">{step.title}</h3>
-                            <p className="text-slate-500 text-sm leading-relaxed relative z-10">{step.desc}</p>
+                            <h3 className="text-xl font-bold text-brand-navy mb-4 relative z-10">
+                                {loading ? <div className="w-32 h-6 bg-slate-200 animate-pulse rounded" /> : step.title}
+                            </h3>
+                            <p className="text-slate-500 text-sm leading-relaxed relative z-10">
+                                {loading ? <span className="w-full h-12 bg-slate-100 animate-pulse rounded inline-block" /> : step.desc}
+                            </p>
 
                             {/* Step indicator */}
                             <div className={cn(

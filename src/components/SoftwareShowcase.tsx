@@ -4,15 +4,23 @@ import { motion } from "framer-motion";
 import { Layout, Database, Shield } from "lucide-react";
 import PremiumDashboard from "./PremiumDashboard";
 import { useTranslation } from "@/context/LocaleContext";
+import { useFirestoreDoc } from "@/lib/hooks/useDoc";
 
 export default function SoftwareShowcase() {
     const { t } = useTranslation();
+    const { data, loading } = useFirestoreDoc('site_config', 'platform');
 
-    const features = [
+    const defaultFeatures = [
         { title: t("platform.features.0.title"), desc: t("platform.features.0.desc"), icon: Layout },
         { title: t("platform.features.1.title"), desc: t("platform.features.1.desc"), icon: Shield },
         { title: t("platform.features.2.title"), desc: t("platform.features.2.desc"), icon: Database },
     ];
+
+    const features = data?.features?.length ? data.features.map((f: any, i: number) => ({
+        title: f.title,
+        desc: f.desc || f.description,
+        icon: defaultFeatures[i % defaultFeatures.length].icon
+    })) : defaultFeatures;
 
     return (
         <section className="py-24 px-6 bg-brand-navy relative overflow-hidden" id="platform">
@@ -49,13 +57,13 @@ export default function SoftwareShowcase() {
                         whileInView={{ opacity: 1, y: 0 }}
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-electric/10 border border-brand-electric/20 text-brand-electric text-[10px] font-black uppercase tracking-[0.2em] mb-6"
                     >
-                        {t("platform.badge")}
+                        {loading ? <span className="w-16 h-3 bg-brand-electric/20 animate-pulse rounded" /> : t("platform.badge")}
                     </motion.div>
                     <h2 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
-                        {t("platform.titlePrefix")} <span className="text-brand-electric">{t("platform.titleSuffix")}</span>
+                        {loading ? <div className="w-64 h-12 bg-white/20 animate-pulse rounded inline-block" /> : (data?.title ?? t("platform.titlePrefix"))} <span className="text-brand-electric">{loading ? <div className="w-32 h-12 bg-brand-electric/20 animate-pulse rounded inline-block" /> : (data?.titleSuffix ?? t("platform.titleSuffix"))}</span>
                     </h2>
                     <p className="text-white/40 text-lg leading-relaxed">
-                        {t("platform.description")}
+                        {loading ? <span className="w-full h-16 bg-white/10 animate-pulse rounded inline-block" /> : (data?.description ?? t("platform.description"))}
                     </p>
                 </div>
 

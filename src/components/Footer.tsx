@@ -5,15 +5,18 @@ import Link from "next/link";
 import { Globe, MessageSquare, Phone, Mail, ArrowUp, ChevronRight } from "lucide-react";
 import { useTranslation } from "@/context/LocaleContext";
 import { useSiteContent } from "@/context/SiteContentContext";
+import { useFirestoreDoc } from "@/lib/hooks/useDoc";
 import { cn } from "@/lib/utils";
 
 export default function Footer() {
     const { t, dir } = useTranslation();
     const { getContentBlock } = useSiteContent();
-    const phone1 = getContentBlock("company-phone") || "+212 670 977 483";
-    const phone2 = getContentBlock("company-phone-2") || "+212 682 086 521";
-    const email = getContentBlock("company-email") || "contact@softelligy.com";
-    const address = getContentBlock("company-address") || "Casablanca, Morocco";
+    const { data, loading } = useFirestoreDoc('site_config', 'footer');
+
+    const phone1 = data?.phone1 ?? getContentBlock("company-phone") ?? "+212 670 977 483";
+    const phone2 = data?.phone2 ?? getContentBlock("company-phone-2") ?? "+212 682 086 521";
+    const email = data?.email ?? getContentBlock("company-email") ?? "contact@softelligy.com";
+    const address = data?.address ?? getContentBlock("company-address") ?? "Casablanca, Morocco";
     const copyright = getContentBlock("footer-copyright") || "SOFTELIGY. ALL RIGHTS RESERVED.";
 
     const scrollToTop = () => {
@@ -137,8 +140,8 @@ export default function Footer() {
                         </div>
                         <div>
                             <p className="text-[10px] font-black uppercase tracking-widest text-white/20 mb-1">PHONE</p>
-                            <p className="text-sm font-bold text-white">{phone1}</p>
-                            <p className="text-sm font-bold text-white/60">{phone2}</p>
+                            {loading ? <div className="w-32 h-4 bg-white/10 animate-pulse rounded mb-2" /> : <p className="text-sm font-bold text-white">{phone1}</p>}
+                            {loading ? <div className="w-32 h-4 bg-white/10 animate-pulse rounded" /> : <p className="text-sm font-bold text-white/60">{phone2}</p>}
                         </div>
                     </div>
                     <div className="flex items-center gap-4 border-y md:border-y-0 md:border-x border-white/5 py-6 md:py-0 md:px-6">
@@ -147,7 +150,7 @@ export default function Footer() {
                         </div>
                         <div>
                             <p className="text-[10px] font-black uppercase tracking-widest text-white/20 mb-1">EMAIL</p>
-                            <p className="text-sm font-bold text-white">{email}</p>
+                            {loading ? <div className="w-40 h-4 bg-white/10 animate-pulse rounded" /> : <p className="text-sm font-bold text-white">{email}</p>}
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
@@ -156,7 +159,7 @@ export default function Footer() {
                         </div>
                         <div>
                             <p className="text-[10px] font-black uppercase tracking-widest text-white/20 mb-1">LOCATION</p>
-                            <p className="text-sm font-bold text-white">{address}</p>
+                            {loading ? <div className="w-32 h-4 bg-white/10 animate-pulse rounded" /> : <p className="text-sm font-bold text-white">{address}</p>}
                         </div>
                     </div>
                 </div>

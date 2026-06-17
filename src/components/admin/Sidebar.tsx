@@ -12,12 +12,28 @@ import {
   LogOut,
   Menu,
   X,
+  Users,
+  Building,
+  Activity,
+  Layout,
+  Globe,
+  MessageSquare
 } from "lucide-react";
 import { logout } from "@/firebase/auth";
 import { useRouter } from "next/navigation";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/admin/hero", label: "Hero Section", icon: Image },
+  { href: "/admin/stats", label: "Stats Section", icon: Activity },
+  { href: "/admin/consultations", label: "Consultations", icon: MessageSquare },
+  { href: "/admin/services", label: "Services", icon: Settings },
+  { href: "/admin/staff", label: "Staff", icon: Users },
+  { href: "/admin/residences", label: "Residences", icon: Building },
+  { href: "/admin/platform", label: "Platform Section", icon: Layout },
+  { href: "/admin/navbar", label: "Navbar Section", icon: Layout },
+  { href: "/admin/footer", label: "Footer Section", icon: Globe },
+  { href: "/admin/logs", label: "Audit Logs", icon: FileText },
   { href: "/admin/pages", label: "Pages", icon: FileText },
   { href: "/admin/images", label: "Images", icon: Image },
   { href: "/admin/content", label: "Content Blocks", icon: Type },

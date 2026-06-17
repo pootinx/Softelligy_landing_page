@@ -8,6 +8,7 @@ import SyndicFlow from "@/components/SyndicFlow";
 import StaffSection from "@/components/StaffSection";
 import CitiesSection from "@/components/CitiesSection";
 import SoftwareShowcase from "@/components/SoftwareShowcase";
+import ConsultationSection from "@/components/ConsultationSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
         <StaffSection />
         <CitiesSection />
         <SoftwareShowcase />
+        <ConsultationSection />
         <Footer />
       </main>
     </SiteContentProvider>

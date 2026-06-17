@@ -3,24 +3,26 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslation } from "@/context/LocaleContext";
-import { useSiteContent } from "@/context/SiteContentContext";
-
-const fallbackStaff = [
-  { key: "security", image: "/Staff/security_guarde.png" },
-  { key: "cleaning", image: "/Staff/cleaning_women.png" },
-  { key: "camera", image: "/Staff/camera_technicien.png" },
-  { key: "elevator", image: "/Staff/elevator_technicien.png" },
-];
+import { useFirestoreCollection } from "@/lib/hooks/useCollection";
 
 export default function StaffSection() {
     const { t } = useTranslation();
-    const { page } = useSiteContent();
-    const remoteMembers = page?.sections?.staff?.members;
+    const { items: remoteStaff, loading } = useFirestoreCollection('staff', 'order');
 
-    const staff = remoteMembers && remoteMembers.length > 0
-      ? remoteMembers.map((m: any) => ({
-          key: m.key,
-          image: m.image || fallbackStaff.find((f) => f.key === m.key)?.image || "",
+    const fallbackStaff = [
+        { key: "security", name: t("staff.roles.security.title"), role: t("staff.roles.security.title"), description: t("staff.roles.security.desc"), imageUrl: "/Staff/security_guarde.png" },
+        { key: "cleaning", name: t("staff.roles.cleaning.title"), role: t("staff.roles.cleaning.title"), description: t("staff.roles.cleaning.desc"), imageUrl: "/Staff/cleaning_women.png" },
+        { key: "camera", name: t("staff.roles.camera.title"), role: t("staff.roles.camera.title"), description: t("staff.roles.camera.desc"), imageUrl: "/Staff/camera_technicien.png" },
+        { key: "elevator", name: t("staff.roles.elevator.title"), role: t("staff.roles.elevator.title"), description: t("staff.roles.elevator.desc"), imageUrl: "/Staff/elevator_technicien.png" },
+    ];
+
+    const staff = remoteStaff && remoteStaff.length > 0
+      ? remoteStaff.map((m: any, i: number) => ({
+          key: m.id || i.toString(),
+          name: m.name || m.role,
+          role: m.role,
+          description: m.description,
+          imageUrl: (m.imageUrl && !m.imageUrl.includes("security_guarde.png") && !m.imageUrl.includes("cleaning_women.png") && !m.imageUrl.includes("camera_technicien.png") && !m.imageUrl.includes("elevator_technicien.png")) ? m.imageUrl : fallbackStaff[i % fallbackStaff.length].imageUrl,
         }))
       : fallbackStaff;
 
@@ -62,8 +64,8 @@ export default function StaffSection() {
                         >
                             <div className="relative w-48 h-48 mx-auto mb-6 rounded-[2rem] overflow-hidden border-2 border-white/10 group-hover:border-brand-electric/50 transition-all shadow-2xl">
                                 <Image
-                                    src={member.image}
-                                    alt={t(`staff.roles.${member.key}.title`)}
+                                    src={member.imageUrl}
+                                    alt={member.role}
                                     fill
                                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                                 />
@@ -71,10 +73,10 @@ export default function StaffSection() {
                             </div>
 
                             <h3 className="text-lg font-black text-white mb-2">
-                                {t(`staff.roles.${member.key}.title`)}
+                                {loading ? <div className="w-24 h-6 bg-white/20 animate-pulse rounded mx-auto" /> : member.name}
                             </h3>
                             <p className="text-white/30 text-sm leading-relaxed max-w-[200px] mx-auto">
-                                {t(`staff.roles.${member.key}.desc`)}
+                                {loading ? <span className="w-full h-12 bg-white/10 animate-pulse rounded mx-auto inline-block" /> : member.description}
                             </p>
 
                             <div className="flex justify-center mt-4">

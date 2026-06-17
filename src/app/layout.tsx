@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 };
 
 import { LocaleProvider } from "@/context/LocaleContext";
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export default function RootLayout({
   children,
@@ -27,6 +28,7 @@ export default function RootLayout({
         <LocaleProvider>
           {children}
         </LocaleProvider>
+        <GoogleAnalytics gaId="G-XXXXXXXXXX" />
       </body>
     </html>
   );
