@@ -43,12 +43,12 @@ export default function Footer() {
                         </p>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-4 lg:justify-end">
-                        <button className="bg-brand text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs shadow-2xl shadow-brand/20 hover:scale-105 transition-all">
+                        <Link href="#contact" className="bg-brand flex justify-center text-center text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs shadow-2xl shadow-brand/20 hover:scale-105 transition-all">
                             {t("common.getConsultation")}
-                        </button>
-                        <button className="bg-white/5 text-white border border-white/10 px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white/10 transition-all">
+                        </Link>
+                        <Link href="#contact" className="bg-white/5 flex justify-center text-center text-white border border-white/10 px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white/10 transition-all">
                             {t("common.requestQuote")}
-                        </button>
+                        </Link>
                     </div>
                 </div>
 

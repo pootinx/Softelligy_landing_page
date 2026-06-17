@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { HandCoins, Hammer, Megaphone, BarChart3, ArrowRight } from "lucide-react";
 import { useTranslation } from "@/context/LocaleContext";
 import { useFirestoreCollection } from "@/lib/hooks/useCollection";
@@ -78,9 +79,9 @@ export default function SyndicFlow() {
                             {t("syndicFlow.description")}
                         </p>
                     </div>
-                    <button className="bg-brand-navy text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-brand transition-all">
+                    <Link href="#contact" className="bg-brand-navy text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-brand transition-all">
                         {t("common.scheduleVisit")} <ArrowRight className={cn("w-5 h-5", dir === "rtl" && "rotate-180")} />
-                    </button>
+                    </Link>
                 </div>
 
                 <div className="grid md:grid-cols-4 gap-8 relative">
