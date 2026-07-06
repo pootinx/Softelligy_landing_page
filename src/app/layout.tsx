@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import { Inter, IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 
+import { ConsultationModalProvider } from "@/context/ConsultationModalContext";
+import ConsultationModal from "@/components/ConsultationModal";
+
+
+
 const inter = Inter({ subsets: ["latin"] });
 const ibmPlexArabic = IBM_Plex_Sans_Arabic({
   weight: ["400", "500", "600", "700"],
@@ -15,6 +20,7 @@ export const metadata: Metadata = {
 };
 
 import { LocaleProvider } from "@/context/LocaleContext";
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export default function RootLayout({
   children,
@@ -22,11 +28,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
-      <body className={`${inter.className} ${ibmPlexArabic.variable} antialiased`}>
+    <html lang="fr">
+      <body
+        className={`${inter.className} ${ibmPlexArabic.variable} antialiased`}
+      >
         <LocaleProvider>
-          {children}
+          <ConsultationModalProvider>
+            {children}
+            <ConsultationModal />
+          </ConsultationModalProvider>
         </LocaleProvider>
+
+        <GoogleAnalytics gaId="G-XXXXXXXXXX" />
       </body>
     </html>
   );

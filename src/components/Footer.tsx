@@ -5,9 +5,11 @@ import Link from "next/link";
 import { Globe, MessageSquare, Phone, Mail, ArrowUp, ChevronRight } from "lucide-react";
 import { useTranslation } from "@/context/LocaleContext";
 import { cn } from "@/lib/utils";
+import { useConsultationModal } from "@/context/ConsultationModalContext";
 
 export default function Footer() {
     const { t, dir } = useTranslation();
+    const { openModal } = useConsultationModal(); 
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -33,12 +35,17 @@ export default function Footer() {
                         </p>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-4 lg:justify-end">
-                        <button className="bg-brand text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs shadow-2xl shadow-brand/20 hover:scale-105 transition-all">
+                        <button
+                            onClick={openModal} 
+                            className="relative group overflow-hidden bg-brand text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:bg-white hover:text-brand-navy shadow-3xl">
                             {t("common.getConsultation")}
                         </button>
-                        <button className="bg-white/5 text-white border border-white/10 px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white/10 transition-all">
+                        <Link
+                            href="/devis"
+                            className="bg-white/5 text-white border border-white/10 px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white/10 transition-all inline-flex items-center justify-center"
+                        >
                             {t("common.requestQuote")}
-                        </button>
+                        </Link>
                     </div>
                 </div>
 

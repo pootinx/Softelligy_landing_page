@@ -5,9 +5,13 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useTranslation } from "@/context/LocaleContext";
 import { cn } from "@/lib/utils";
+import { useConsultationModal } from "@/context/ConsultationModalContext";
+import { div } from "framer-motion/client";
+import Link from "next/link";
 
 export default function UnifiedHero() {
     const { t, dir } = useTranslation();
+    const { openModal } = useConsultationModal(); 
 
     return (
         <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-brand-navy pt-20">
@@ -67,17 +71,27 @@ export default function UnifiedHero() {
                     </p>
 
                     <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-                        <button className="relative group overflow-hidden bg-brand text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:bg-white hover:text-brand-navy shadow-3xl">
-                            <span className="relative z-10 flex items-center gap-4">
-                                {t("common.getConsultation")}
-                                <ArrowRight className={cn("w-5 h-5 group-hover:translate-x-1 transition-transform", dir === "rtl" && "rotate-180")} />
-                            </span>
-                        </button>
-
-                        <button className="flex items-center gap-4 text-white font-bold px-12 py-6 rounded-2xl border border-white/10 hover:bg-white/5 transition-all uppercase tracking-widest text-xs">
-                            {t("common.exploreServices")}
+                        <button
+                            onClick={openModal}
+                            className="flex items-center gap-4 bg-brand text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:bg-white hover:text-brand-navy shadow-3xl">
+                           
+                            {t("common.getConsultation")}
                             <ChevronRight className={cn("w-5 h-5 text-brand-electric", dir === "rtl" && "rotate-180")} />
                         </button>
+
+                        <Link
+                            href="/devis"
+                            className="flex items-center gap-4 text-white font-bold px-12 py-6 rounded-2xl border border-white/10 hover:bg-white/5 transition-all uppercase tracking-widest text-xs group scale-100 hover:scale-105 shadow-xl"
+                            >
+                            {t("common.requestQuote")}
+
+                            <ChevronRight
+                                className={cn(
+                                "w-5 h-5 text-brand-electric transition-transform group-hover:translate-x-1",
+                                dir === "rtl" && "rotate-180"
+                                )}
+                            />
+                        </Link>
                     </div>
                 </motion.div>
             </div>

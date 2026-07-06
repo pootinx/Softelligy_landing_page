@@ -7,12 +7,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/context/LocaleContext";
+import { useConsultationModal } from "@/context/ConsultationModalContext";
 
 export default function Navbar() {
     const { t, locale, setLocale, dir } = useTranslation();
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [langMenuOpen, setLangMenuOpen] = useState(false);
+    const { openModal } = useConsultationModal(); 
+    
 
     useEffect(() => {
         const handleScroll = () => {
@@ -113,7 +116,9 @@ export default function Navbar() {
                     <button className="text-[10px] font-black uppercase tracking-widest text-white/50 hover:text-white px-4">
                         {t("common.login")}
                     </button>
-                    <button className="bg-brand text-white px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 hover:bg-white hover:text-brand-navy transition-all group scale-100 hover:scale-105 shadow-xl shadow-brand/20">
+                    <button 
+                        onClick={openModal}
+                        className="bg-brand text-white px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 hover:bg-white hover:text-brand-navy transition-all group scale-100 hover:scale-105 shadow-xl shadow-brand/20">
                         {t("common.getConsultation")}
                         <ArrowRight className={cn("w-3 h-3 group-hover:translate-x-1 transition-transform", dir === "rtl" && "rotate-180")} />
                     </button>

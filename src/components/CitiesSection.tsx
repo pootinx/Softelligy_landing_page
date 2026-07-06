@@ -1,9 +1,14 @@
+// CitiesSection.tsx
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import { useTranslation } from "@/context/LocaleContext";
+
+import CityDetailModal from "./residences/CityDetailModal";
+import { citiesDetailData } from "./residences/mockData";
 
 const cities = [
     { key: "beniMellal", image: "/residences/Residence1.jpg" },
@@ -13,11 +18,15 @@ const cities = [
 ];
 
 export default function CitiesSection() {
-    const { t } = useTranslation();
+    const translation = useTranslation();
+    const t = translation.t;
+    const locale = (translation as any).locale || "fr";
+
+    const [selectedCity, setSelectedCity] = useState<{ key: string; image: string } | null>(null);
 
     return (
         <section className="py-24 px-6 bg-white relative overflow-hidden" id="cities">
-            {/* Background Degradation */}
+            {/* Background Decoration */}
             <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:5rem_5rem]" />
                 <motion.div
@@ -57,9 +66,9 @@ export default function CitiesSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.1 }}
                             viewport={{ once: true }}
-                            className="group relative rounded-[2rem] overflow-hidden bg-white border border-slate-100 hover:shadow-2xl hover:shadow-brand/10 transition-all"
+                            onClick={() => setSelectedCity(city)}
+                            className="group relative rounded-[2rem] overflow-hidden bg-white border border-slate-100 hover:shadow-2xl hover:shadow-brand/10 transition-all cursor-pointer"
                         >
-                            {/* Image */}
                             <div className="relative h-64 overflow-hidden">
                                 <Image
                                     src={city.image}
@@ -67,10 +76,8 @@ export default function CitiesSection() {
                                     fill
                                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                                 />
-                                {/* Overlay gradient */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-brand-navy/20 to-transparent" />
 
-                                {/* City name overlay */}
                                 <div className="absolute bottom-0 left-0 right-0 p-6">
                                     <div className="flex items-center gap-2 mb-2">
                                         <div className="w-2 h-2 rounded-full bg-brand-electric animate-pulse" />
@@ -84,7 +91,6 @@ export default function CitiesSection() {
                                 </div>
                             </div>
 
-                            {/* Bottom info */}
                             <div className="p-5 flex items-center justify-between">
                                 <div className="flex items-center gap-2 text-slate-400 text-xs font-bold">
                                     <MapPin className="w-3 h-3 text-brand" />
@@ -100,6 +106,16 @@ export default function CitiesSection() {
                     ))}
                 </div>
             </div>
+
+            {/* City Detail Modal (Nested Residences list and details) */}
+            <CityDetailModal
+                isOpen={selectedCity !== null}
+                onClose={() => setSelectedCity(null)}
+                city={selectedCity}
+                t={t}
+                locale={locale}
+                cityDetails={selectedCity ? citiesDetailData[selectedCity.key] : undefined}
+            />
         </section>
     );
 }
